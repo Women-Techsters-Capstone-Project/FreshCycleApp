@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/route_utils.dart';
 
 class SignupPage extends StatefulWidget {
   final String role; // Pass the role from Role Selection
@@ -67,18 +68,22 @@ class _SignupPageState extends State<SignupPage> {
             
             const SizedBox(height: 32),
             // Sign Up Button
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-                onPressed: _acceptTerms ? () => context.go('/home') : null,
-                child: const Text("Sign Up", style: TextStyle(color: Colors.white, fontSize: 16)),
-              ),
-            ),
+          ElevatedButton(
+   style: ElevatedButton.styleFrom(
+    backgroundColor: AppColors.primary,
+    minimumSize: const Size(double.infinity, 56),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  ),
+  onPressed: () {
+    // 1. We wrap it in an anonymous function () {}
+    // 2. We use 'widget.role' to access the role from the top class
+    RouteUtils.navigateByRole(context, widget.role);
+  },
+  child: const Text(
+    "Sign Up", 
+    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+  ),
+)
           ],
         ),
       ),

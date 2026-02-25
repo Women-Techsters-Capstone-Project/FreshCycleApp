@@ -5,7 +5,10 @@ import '../../features/splash/presentation/pages/splash_page.dart';
 import '../../features/auth/presentation/pages/role_selection_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
-
+import '../../features/home/presentation/pages/buyer_home_page.dart';
+import '../../features/home/presentation/pages/farmer_home_page.dart';
+import '../../features/home/presentation/pages/logistics_home_page.dart';
+import '../../features/home/presentation/pages/admin_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -35,11 +38,25 @@ class AppRouter {
   builder: (context, state) => const LoginPage(),
 ),
       GoRoute(
-        path: '/home',
-        builder: (context, state) => const Scaffold(
-          body: Center(child: Text('Home Dashboard')),
+        path: '/buyer-home',
+        builder: (context, state) => const BuyerHomePage(),
         ),
-      ),
+
+        GoRoute(
+          path: '/farmer-home',
+          builder: (context, state) => const FarmerHomePage(),
+        ),
+
+        GoRoute(
+          path: '/logistics-home',
+          builder: (context, state) => const LogisticsHomePage(),
+          ),
+
+        GoRoute(
+          path: '/admin-home',
+          builder: (context, state) => const AdminHomePage(),
+          ), 
+
     ],
   );
 }

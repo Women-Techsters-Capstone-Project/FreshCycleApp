@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/route_utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -62,18 +63,25 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 24),
                 
                 // Login Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    onPressed: () => context.go('/home'),
-                    child: const Text("Login", style: TextStyle(color: Colors.white, fontSize: 16)),
-                  ),
-                ),
+                ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    backgroundColor: AppColors.primary,
+    minimumSize: const Size(double.infinity, 56),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  ),
+  onPressed: () {
+    // For now, we manually set this to 'buyer' to test the buyer dashboard.
+    // You can change this to 'farmer' or 'logistics' to test other routes!
+    const String loggedInUserRole = "buyer"; 
+    
+    debugPrint("Logging in as: $loggedInUserRole");
+    RouteUtils.navigateByRole(context, loggedInUserRole);
+  },
+  child: const Text(
+    "Login", 
+    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+  ),
+),
                 
                 const SizedBox(height: 24),
                 
